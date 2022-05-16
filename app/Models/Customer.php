@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,9 +33,14 @@ class Customer extends Model
      *
      * @return void
      */
-    public function reviews()
-    {
+    public function reviews() {
         return $this->hasMany(Review::class);
+    }
+
+    public function getCreatedAtAttribute($date) {
+        $value = Carbon::parse($date);
+        $parse = $value->locale('id');
+        return $parse->translateFormat('1, d F Y');
     }
 
     
