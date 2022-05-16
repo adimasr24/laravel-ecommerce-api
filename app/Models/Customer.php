@@ -17,4 +17,25 @@ class Customer extends Model
     protected $fillable = [
         'name', 'email', 'email_verified_at', 'password', 'remember_token'
     ];
+    
+    /**
+     * invoices
+     *
+     * @return void
+     */
+    public function invoices() {
+        return $this->hasMany(Invoice::class);
+    }
+
+    /**
+     * reviews
+     *
+     * @return void
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    
 }
